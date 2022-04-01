@@ -17,6 +17,11 @@
         display: flex;
         justify-content: space-around;
     }
+
+    .page {
+    margin: 50px 50px;
+}
+
 </style>
 
 <div class="header">
@@ -28,23 +33,23 @@
     
     <h3>
         <a href="{% url 'example' %}">
-            Example
+            Products
         </a>
     </h3>
     <h3>
         <a href="{% url 'test' %}">
-            Test
+            Categories
         </a>
     </h3>
 
     <h3>Account</h3>
 </div>
     
-
+<div class="page">
 {% block content %}
         
 {% endblock %}
-
+</div>
 
 
 

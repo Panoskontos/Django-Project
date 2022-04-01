@@ -1,11 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 # Create your views here.
+from .models import *
 
-products = [
-    {'id': 1, 'name': 'watch', 'price': 100},
-    {'id': 2, 'name': 'hoodie', 'price': 40},
-]
 
 
 def home(request):
@@ -13,11 +10,14 @@ def home(request):
 
     # Data
     context = {
-        "products": products
+        # "products": products
     }
 
     # Which html you want to link
     return render(request, 'index.html', context)
+
+
+
 
 
 def watch(request):
@@ -25,13 +25,22 @@ def watch(request):
     }
     return render(request, 'myapp/index.html', context)
 
+# Categiries
 def test(request):
+    categories = Category.objects.all()
     context = {
+        'categories':categories
     }
     return render(request, 'myapp/test.html', context)
 
 
+# Products
 def example(request):
-    context = {}
+    products = Product.objects.all()
+    print(products)
+    context = {
+        'products':products
+    }
     return render(request, 'myapp/example.html',context)
 
+# def get_category_products(request,pk):
