@@ -1,7 +1,56 @@
-<h1>Homepage</h1>
+{% load static %}
 
 
-{% for i in products %}
-<br>
-{{i.name | lower}}
-{% endfor %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <style>
+    .header {
+        background-color: aquamarine;
+        display: flex;
+        justify-content: space-around;
+    }
+</style>
+
+<div class="header">
+    <h3>
+        <a href="{% url 'home' %}">
+            Home
+        </a>
+    </h3>
+    
+    <h3>
+        <a href="{% url 'example' %}">
+            Example
+        </a>
+    </h3>
+    <h3>
+        <a href="{% url 'test' %}">
+            Test
+        </a>
+    </h3>
+
+    <h3>Account</h3>
+</div>
+    
+
+{% block content %}
+        
+{% endblock %}
+
+
+
+
+</body>
+</html>
+
+   
+
+

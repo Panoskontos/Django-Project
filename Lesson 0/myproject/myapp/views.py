@@ -22,6 +22,16 @@ def home(request):
 
 def watch(request):
     context = {
-        "products": products
     }
-    return render(request, 'index.html', context)
+    return render(request, 'myapp/index.html', context)
+
+def test(request):
+    context = {
+    }
+    return render(request, 'myapp/test.html', context)
+
+
+def example(request):
+    context = {}
+    return render(request, 'myapp/example.html',context)
+
