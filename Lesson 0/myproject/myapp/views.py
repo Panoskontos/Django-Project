@@ -36,11 +36,38 @@ def test(request):
 
 # Products
 def example(request):
+    # για ολα βαζεις all()
     products = Product.objects.all()
-    print(products)
+#  για 1 βαζεις get()
+    one_product = Product.objects.get(name="Laptop")
+
+    # για συγκεκριμενη ομαδα βαζεις .filter()
+    # lte = lower than equal
+    # gte = greater than equal
+    # cheap_products = Product.objects.all().filter(price__lte=100)
+    # cheap_products = Product.objects.all().filter(name__icontains="r")
+    cheap_products = Product.objects.filter(date_created__hour=18)
+
     context = {
-        'products':products
+        'products':products,
+        'one_product':one_product,
+        'cheap_products':cheap_products,
     }
     return render(request, 'myapp/example.html',context)
 
-# def get_category_products(request,pk):
+
+
+# asdasdasdasdasd
+# asdasdasdasdasd
+# sadasdasdasdasd
+# asdasdasdasdasd
+
+
+products = [
+    {'id':1, 
+    'name':"laptop",
+    'price':900,
+    "category":{'name':'Electronics','id':40}}
+]
+
+# products.category

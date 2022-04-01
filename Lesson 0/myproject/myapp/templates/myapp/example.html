@@ -8,12 +8,21 @@
 <ul>
     {% for product in products %}
     <li>
-        {{product.name}} - {{product.price}} $
+        {{product.name}} - {{product.price}} $ - {{product.category.name}} - {{product.date_created}}
     </li>
     {% endfor %}
 </ul>
 
 
+<h1>One product</h1>
+<div>
+    {{one_product}}
+</div>
+
+<h1>Chaep Products</h1>
+<div>
+    {{cheap_products}}
+</div>
 {% endblock %}
 
 
