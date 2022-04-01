@@ -1,1 +1,7 @@
 <h1>Homepage</h1>
+
+
+{% for i in products %}
+<br>
+{{i.name | lower}}
+{% endfor %}
