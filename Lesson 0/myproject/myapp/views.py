@@ -92,9 +92,8 @@ def create_new_product(request):
         
         form = ProductForm(request.POST)
         if form.is_valid():
-            message = 'Item was created with success'
             form.save()
-            return redirect('success',message)
+            redirect('example')
     context = {
         'form':form,
     }
@@ -108,6 +107,8 @@ def update_product(request,pk):
         form = ProductForm(request.POST, instance=product)
         if form.is_valid():
             message = 'Item was updated with success'
+
+            # Added at the end of class
             form.save()
             return redirect('success',message)
     context = {
@@ -141,7 +142,7 @@ def product_by_category(request,category):
     }
     return render(request, 'myapp/product_by_category.html', context)
 
-# Versatile
+# Versatile Success
 def success(request, message):
     return HttpResponse(str(message))
       
