@@ -16,21 +16,21 @@
             {{product.name}} 
         </a>
         
-        - {{product.price}} $ - {{product.category.name}} - {{product.date_created}}
+        - {{product.price}} $ - {{product.category.name}} - {{product.date_created}}  - 
+        
+        <a href="{% url 'update_product' product.id %}">
+            Edit
+        </a>
+         - - 
+        <a href="{% url 'delete_product' product.id %}">
+            Delete
+        </a>
     </li>
     {% endfor %}
 </ul>
 
 
-<h1>One product</h1>
-<div>
-    {{one_product}}
-</div>
 
-<h1>Chaep Products</h1>
-<div>
-    {{cheap_products}}
-</div>
 {% endblock %}
 
 
