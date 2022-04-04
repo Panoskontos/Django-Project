@@ -2,13 +2,21 @@
 
 {% block content %}
 
-{{products}}
+<button>
+    <a href="{% url 'create_new_product' %}">
+        Add product
+    </a>
+</button>
 
 <h1>Products</h1>
 <ul>
     {% for product in products %}
     <li>
-        {{product.name}} - {{product.price}} $ - {{product.category.name}} - {{product.date_created}}
+        <a href="{% url 'product' product.name %}">
+            {{product.name}} 
+        </a>
+        
+        - {{product.price}} $ - {{product.category.name}} - {{product.date_created}}
     </li>
     {% endfor %}
 </ul>

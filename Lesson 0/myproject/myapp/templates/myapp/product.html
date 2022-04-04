@@ -1,0 +1,19 @@
+
+
+{% extends 'index.html' %}
+
+{% block content %}
+
+{% if product %}
+<ul>
+    <li>{{product.id}}</li>
+    <li>{{product.name}}</li>
+    <li>{{product.price}}</li>
+    <li>{{product.category}}</li>
+</ul>
+{% else %}
+<p>Product doesn't exist</p>
+{% endif %}
+
+{% endblock %}
+

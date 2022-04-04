@@ -25,12 +25,14 @@
     
     <h1>Categories</h1>
     <div class="categories">
-        {% for i in categories %}
-<a href="">
+    {% for i in categories %}
+
+    <a href="{% url 'product_by_category' i.name %}">
     <div class="category">
-        {{i}}
-</div>
-</a>
+            {{i}}
+        </div>
+    </a>
+
 {% endfor %}
 {% endblock %}
 </div>

@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 # Create your views here.
 from .models import *
+from .forms import ProductForm
 
 
 
@@ -71,3 +72,38 @@ products = [
 ]
 
 # products.category
+
+
+def product(request,name):
+    # get 1 object
+    
+    product = Product.objects.get(name=name)
+    
+    context = {
+        'product':product
+    }
+    return render(request, 'myapp/product.html', context)
+
+
+
+def create_new_product(request):
+    form = ProductForm()
+    if request.method == 'POST':
+        
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+    context = {
+        'form':form,
+    }
+    return render(request, 'myapp/form.html', context)
+
+
+def product_by_category(request,category):
+    products = Product.objects.all()
+    print(products)
+    context = {
+        'products':products,
+        'category':category,
+    }
+    return render(request, 'myapp/product_by_category.html', context)
