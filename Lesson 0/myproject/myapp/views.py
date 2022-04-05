@@ -2,8 +2,15 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 # Create your views here.
 from .models import *
-from .forms import ProductForm
+from .forms import ProductForm, ReviewForm
 
+# Class based Views
+# Imports for class based views
+from django.views.generic import ListView, View
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.detail import DetailView
+# Redirecting
+from django.urls import reverse_lazy
 
 
 def home(request):
@@ -146,3 +153,46 @@ def product_by_category(request,category):
 def success(request, message):
     return HttpResponse(str(message))
       
+
+# Class Based Views
+    # read
+class ReviewList(ListView):
+    # List
+    model = Review
+    context_object_name = 'reviews'
+    # paginate_by = 10
+    template_name = 'myapp/reviews.html'
+    # you can search for other attributes to customize
+
+
+class ReviewDetail(DetailView):
+    # Detail
+    model = Review
+    context_object_name = 'review'
+    template_name = 'myapp/review_object.html'
+
+
+
+class ReviewCreate(CreateView):
+    # Create
+    model = Review
+    # redirect
+    success_url = reverse_lazy('reviews')
+    form_class = ReviewForm
+    template_name = 'myapp/create_review.html'
+
+class ReviewUpdate(UpdateView):
+    # Create
+    model = Review
+    # redirect
+    success_url = reverse_lazy('reviews')
+    form_class = ReviewForm
+    template_name = 'myapp/create_review.html'
+
+class ReviewDelete(DeleteView):
+    # Create
+    model = Review
+    # redirect
+    context_object_name = 'review'
+    success_url = reverse_lazy('reviews')
+    template_name = 'myapp/delete_review.html'

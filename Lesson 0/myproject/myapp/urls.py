@@ -14,5 +14,13 @@ urlpatterns = [
     path('success/<str:message>',success, name='success'),
     
     
-    path('category/<str:category>/',product_by_category, name="product_by_category")
+    path('category/<str:category>/',product_by_category, name="product_by_category"),
+
+
+    # Class Based Views
+    path('reviews/', ReviewList.as_view(),name="reviews"),
+    path('reviews/<str:pk>', ReviewDetail.as_view(),name="review-object"),
+    path('create_review', ReviewCreate.as_view(),name="create-review"),
+    path('update_review/<str:pk>', ReviewUpdate.as_view(),name="create-review"),
+    path('delete_review/<str:pk>', ReviewDelete.as_view(),name="delete-review"),
 ]
