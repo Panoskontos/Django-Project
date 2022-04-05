@@ -204,7 +204,12 @@ def ImportDocument(request):
         print(file.size)
         if form.is_valid():
             form.save()
-            return redirect('example')
+            #for testing fail function
+            message = 'Improper import by user'
+            return redirect('fail', message)
     return render(request,'myapp/import.html',{'form':form})
 
-        
+# Versatile Fail
+def fail(request, message):
+    context = {'message':message}
+    return render(request, 'myapp/fail.html', context)
