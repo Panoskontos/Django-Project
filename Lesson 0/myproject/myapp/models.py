@@ -26,3 +26,7 @@ class Review(models.Model):
 
     def __str__(self):
      return self.text
+
+class Document(models.Model):
+    name = models.CharField(max_length=100)
+    file = models.FileField(blank=True, null=True)

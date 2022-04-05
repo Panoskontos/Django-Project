@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 # Create your views here.
 from .models import *
-from .forms import ProductForm, ReviewForm
+from .forms import ProductForm, ReviewForm, DocumentForm
 
 # Class based Views
 # Imports for class based views
@@ -155,7 +155,7 @@ def success(request, message):
       
 
 # Class Based Views
-    # read
+    # read all review objects
 class ReviewList(ListView):
     # List
     model = Review
@@ -163,15 +163,13 @@ class ReviewList(ListView):
     # paginate_by = 10
     template_name = 'myapp/reviews.html'
     # you can search for other attributes to customize
-
-
+    
+# read 1 object
 class ReviewDetail(DetailView):
     # Detail
     model = Review
     context_object_name = 'review'
     template_name = 'myapp/review_object.html'
-
-
 
 class ReviewCreate(CreateView):
     # Create
@@ -196,3 +194,17 @@ class ReviewDelete(DeleteView):
     context_object_name = 'review'
     success_url = reverse_lazy('reviews')
     template_name = 'myapp/delete_review.html'
+
+
+def ImportDocument(request):
+    form = DocumentForm()
+    if request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES)
+        file = request.FILES['file']
+        print(file.size)
+        if form.is_valid():
+            form.save()
+            return redirect('example')
+    return render(request,'myapp/import.html',{'form':form})
+
+        

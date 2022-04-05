@@ -15,7 +15,7 @@ urlpatterns = [
     
     
     path('category/<str:category>/',product_by_category, name="product_by_category"),
-
+    path('import/', ImportDocument, name="import"),
 
     # Class Based Views
     path('reviews/', ReviewList.as_view(),name="reviews"),
