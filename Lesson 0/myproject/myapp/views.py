@@ -4,6 +4,7 @@ from django.http import HttpResponse, JsonResponse
 from .models import *
 from .forms import ProductForm, ReviewForm, DocumentForm
 
+from .filter import ProductFilter
 # Class based Views
 # Imports for class based views
 from django.views.generic import ListView, View
@@ -207,9 +208,22 @@ def ImportDocument(request):
             #for testing fail function
             message = 'Improper import by user'
             return redirect('fail', message)
+            
     return render(request,'myapp/import.html',{'form':form})
 
 # Versatile Fail
 def fail(request, message):
     context = {'message':message}
     return render(request, 'myapp/fail.html', context)
+
+
+def Myfilter(request):
+    products = Product.objects.all()
+    # SELECT * FROM PRODUCTS
+
+    myfilter = ProductFilter(request.GET, queryset=products)
+    products = myfilter.qs
+
+    context = {'products':products,
+    'myfilter':myfilter}
+    return render(request, 'myapp/filters.html', context)

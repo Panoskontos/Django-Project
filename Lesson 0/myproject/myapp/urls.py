@@ -25,4 +25,5 @@ urlpatterns = [
     path('delete_review/<str:pk>', ReviewDelete.as_view(),name="delete-review"),
     # Fail view
     path('fail/<str:message>', fail,name="fail"),
+    path('filter', Myfilter,name="filter"),
 ]

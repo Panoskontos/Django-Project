@@ -1,0 +1,38 @@
+{% extends 'index.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<form action="" method="get">
+    {% csrf_token %}
+    {{myfilter.form|crispy}}
+    <br>
+    <button type="submit">Submit</button>
+</form>
+
+<ul>
+    {% for product in products %}
+    <li>
+        <a href="{% url 'product' product.name %}">
+            {{product.name}} 
+        </a>
+        
+        - {{product.price}} $ - {{product.category.name}} - {{product.date_created}}  - 
+        
+        <a href="{% url 'update_product' product.id %}">
+            Edit
+        </a>
+         - - 
+        <a href="{% url 'delete_product' product.id %}">
+            Delete
+        </a>
+        - -
+        <a href="{% url 'create-review' %}">
+            Leave a Review
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
